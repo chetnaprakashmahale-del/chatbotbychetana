@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KC Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 420px;
+            height: 650px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            color: white;
+            font-size: 16px;
+            white-space: pre-line;
+        }
+
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .chat-input input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .chat-input input[type="submit"] {
+            margin-left: 10px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            background: #6a11cb;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .chat-input input[type="submit"]:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-msg {
+            text-align: center;
+            color: #eee;
+            font-size: 14px;
+            padding: 5px;
+        }
+    </style>
+
+    <script>
+        function sb() {
+            let chatbox = document.getElementById("chatbox");
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+
+</head>
+
+<body onload="sb()">
+
+    <div class="chat-container">
+        
+        <div class="chat-header">
+            🤖 KC Chatbot
+        </div>
+
+        <div class="chat-box" id="chatbox">
+            {{chat}}
+        </div>
+
+        <form method="POST" class="chat-input">
+            <input type="text" name="qts" placeholder="Type your message..." required>
+            <input type="submit" value="Send">
+            <input type="hidden" name="chat" value="{{chat}}">
+        </form>
+
+        <div class="footer-msg">
+            {{msg}}
+        </div>
+
+    </div>
+
+</body>
+</html>
